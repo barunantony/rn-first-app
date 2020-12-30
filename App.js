@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, FlatList } from 'react-native';
 
 export default function App() {
   const [goal, setGoal] = useState('Okay, Lets go!!! :-)');
@@ -9,7 +9,7 @@ export default function App() {
     setGoal(enteredText);
   }
   const addGoalHandler = () => {
-    setCourseGoals(currentGoals => [...currentGoals, goal]);
+    setCourseGoals(currentGoals => [...currentGoals, { key: courseGoals.length + '', goal}]);
     setGoal('');
   }
 
@@ -24,8 +24,23 @@ export default function App() {
       />
       <Button 
         title="Add above goal to your list" 
-        onPress={addGoalHandler} />
-      {courseGoals.map((goal, i) => <Text key={i}>{goal}</Text>)}
+        onPress={addGoalHandler}
+      />
+      {/* <ScrollView>
+        {courseGoals.map((goal, i) => 
+          <View key={i} style={styles.listItem}>
+            <Text>{goal}</Text>
+          </View>
+        )}
+      </ScrollView> */}
+      <FlatList
+        data={courseGoals}
+        renderItem={itemData => (
+          <View style={styles.listItem}>
+            <Text>{itemData.item.goal}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -34,8 +49,15 @@ const styles = StyleSheet.create({
   container: {
    padding: 40
   },
-  // button: {
-  //   position: 'absolute',
-  //   bottom: 0
-  // }
+  button: {
+    position: 'absolute',
+    bottom: 0
+  },
+  listItem: {
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#ccc',
+    borderColor: 'black',
+    borderWidth: 1
+  }
 });
