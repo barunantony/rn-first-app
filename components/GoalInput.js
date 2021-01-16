@@ -13,7 +13,7 @@ const GoalInput = (props) => {
     } 
 
     return (
-        <View>
+        <View style={styles.inputView}>
             <TextInput
                 placeholder="course goal"
                 style={styles.textInput}
@@ -21,8 +21,9 @@ const GoalInput = (props) => {
                 value={goal}
             />
             <Button 
-                title="Add above goal to your list" 
+                title="Add" 
                 onPress={() => buttonClick(props.addGoalHandler)}
+                style={styles.button}
             />
         </View>
         
@@ -30,13 +31,17 @@ const GoalInput = (props) => {
 };
 
 const styles = StyleSheet.create({
+    inputView: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     textInput: {
         borderBottomColor: 'black',
-        borderBottomWidth: 2 
+        borderBottomWidth: 2,
+        flex: 0.9
     },
     button: {
-        position: 'absolute',
-        bottom: 0
     }
 });
 

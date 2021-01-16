@@ -10,13 +10,25 @@ export default function App() {
     setCourseGoals(currentGoals => [...currentGoals, { key: courseGoals.length + '', goal}]);
   }
 
+  const itemClick = (key) => {
+    setCourseGoals((currentGoals) => {
+      console.log('current goals: ', currentGoals)
+      const index = currentGoals.findIndex(goal => goal.key === key);
+      currentGoals[index].goal += '(✓)';
+      return currentGoals;
+    })
+  }
+
 
   return (
     <View style={styles.container} >
       <GoalInput addGoalHandler={addGoalHandler} />
       <FlatList
         data={courseGoals}
-        renderItem={itemData => (<GoalItem goal={itemData.item.goal} />)}
+        renderItem={itemData => 
+          (<GoalItem 
+              goal={itemData.item.goal} 
+              itemClicked={itemClick.bind(this, itemData.item.key)}/>)}
       />
     </View>
   );
