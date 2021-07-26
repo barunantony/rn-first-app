@@ -19,6 +19,12 @@ export default function App() {
     })
   }
 
+  const removeGoalHandler = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter(goal => goal.key !== goalId);
+    });
+  }
+
 
   return (
     <View style={styles.container} >
@@ -28,7 +34,10 @@ export default function App() {
         renderItem={itemData => 
           (<GoalItem 
               goal={itemData.item.goal} 
-              itemClicked={itemClick.bind(this, itemData.item.key)}/>)}
+              itemClicked={itemClick.bind(this, itemData.item.key)}
+              id={itemData.item.key}
+              onDelete={removeGoalHandler}
+          />)}
       />
     </View>
   );
