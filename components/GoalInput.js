@@ -34,13 +34,16 @@ const GoalInput = (props) => {
 const styles = StyleSheet.create({
     inputView: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
     },
     textInput: {
+        width: '80%',
         borderBottomColor: 'black',
         borderBottomWidth: 2,
-        flex: 0.9
+        padding: 20,
+        marginBottom: 20
     },
     button: {
     }
