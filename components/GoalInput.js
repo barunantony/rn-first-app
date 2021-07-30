@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Modal } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 
 const GoalInput = (props) => {
     const [goal, setGoal] = useState('Okay, Lets go!!! :-)');
@@ -26,6 +26,12 @@ const GoalInput = (props) => {
                     onPress={() => buttonClick(props.addGoalHandler)}
                     style={styles.button}
                 />
+                <TouchableOpacity
+                    onPress={() => buttonClick(props.closeModalHandler)}
+                    style={styles.cancelButton}
+                >
+                   X
+                </TouchableOpacity>
             </View>
         </Modal>
     );
@@ -46,6 +52,19 @@ const styles = StyleSheet.create({
         marginBottom: 20
     },
     button: {
+    },
+    cancelButton: {
+        color: 'grey',
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        borderColor: 'grey',
+        borderWidth: 1,
+        borderRadius: 10,
+        width: 20,
+        height: 20,
+        fontSize: 15,
+        alignItems: 'center'
     }
 });
 

@@ -9,6 +9,7 @@ export default function App() {
 
   const addGoalHandler = (goal) => {
     setCourseGoals(currentGoals => [...currentGoals, { key: courseGoals.length + '', goal}]);
+    setIsAddMode(false);
   }
 
   const itemClick = (key) => {
@@ -27,6 +28,11 @@ export default function App() {
   }
 
 
+  const closeModalHandler = () => {
+    setIsAddMode(false);
+  }
+
+
   return (
     <View style={styles.container} >
       <Button 
@@ -34,7 +40,7 @@ export default function App() {
         onPress={() => setIsAddMode(true)}
         style={styles.button}
       />
-      <GoalInput addGoalHandler={addGoalHandler} isAddMode={isAddMode} />
+      <GoalInput addGoalHandler={addGoalHandler} isAddMode={isAddMode} closeModalHandler={closeModalHandler}/>
       <FlatList
         data={courseGoals}
         renderItem={itemData => 
